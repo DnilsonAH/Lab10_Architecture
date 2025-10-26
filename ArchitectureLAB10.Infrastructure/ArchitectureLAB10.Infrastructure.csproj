@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Persistence\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ArchitectureLAB10.Domain\ArchitectureLAB10.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

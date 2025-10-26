@@ -5,6 +5,7 @@ namespace ArchitectureLAB10.Infrastructure.Configuration;
 public static class InfrastructureServicesExtensions
 {
     
+    /*
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
@@ -27,6 +28,6 @@ public static class InfrastructureServicesExtensions
         services.AddScoped<IUploadFileToAzureStorageService, UploadFileToAzureStorageService>();
         services.AddScoped<IActivityService, ActivityService>();
         return services;
-    }
+    }*/
     
 }
