@@ -7,6 +7,6 @@ public interface IGenericRepository<T> where T : class
     // Obtener entidades que cumplan con un predicado específico
     //Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
     Task AddAsync(T entity);
-    Task UpdateAsync(T entity);
-    Task DeleteAsync(int id);
+    void Update(T entity);
+    void Delete(T entity);
 }

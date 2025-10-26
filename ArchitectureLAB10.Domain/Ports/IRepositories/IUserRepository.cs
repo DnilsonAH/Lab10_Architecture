@@ -4,5 +4,5 @@ namespace ArchitectureLAB10.Domain.Ports.IRepositories;
 
 public interface IUserRepository : IGenericRepository<User>
 {
-    
+    Task<User?> GetByUsernameAsync(string username);
 }
