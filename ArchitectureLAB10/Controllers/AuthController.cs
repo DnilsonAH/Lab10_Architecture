@@ -1,4 +1,4 @@
-using ArchitectureLAB10.Application.Features.Users.Commands;
+using ArchitectureLAB10.Application.UseCases.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

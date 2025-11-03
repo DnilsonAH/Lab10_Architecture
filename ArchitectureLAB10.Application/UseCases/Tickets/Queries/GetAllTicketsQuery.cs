@@ -3,7 +3,7 @@ using ArchitectureLAB10.Domain.Ports;
 using AutoMapper;
 using MediatR;
 
-namespace ArchitectureLAB10.Application.Features.Tickets.Queries;
+namespace ArchitectureLAB10.Application.UseCases.Tickets.Queries;
 
 // Query para obtener TODOS los tickets (Admin)
 public class GetAllTicketsQuery : IRequest<IEnumerable<TicketDto>> { }

@@ -3,7 +3,7 @@ using ArchitectureLAB10.Domain.Ports;
 using AutoMapper;
 using MediatR;
 
-namespace ArchitectureLAB10.Application.Features.Tickets.Commands;
+namespace ArchitectureLAB10.Application.UseCases.Tickets.Commands;
 
 public class UpdateTicketCommand : IRequest
 {

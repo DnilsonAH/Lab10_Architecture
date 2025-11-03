@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 
 
-namespace ArchitectureLAB10.Application.Features.Tickets.Queries;
+namespace ArchitectureLAB10.Application.UseCases.Tickets.Queries;
 
 public class GetMyTicketsQuery : IRequest<IEnumerable<TicketDto>> { }
 

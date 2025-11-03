@@ -6,7 +6,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http; 
 
-namespace ArchitectureLAB10.Application.Features.Tickets.Commands;
+namespace ArchitectureLAB10.Application.UseCases.Tickets.Commands;
 
 public class CreateTicketCommand : IRequest<TicketDto>
 {

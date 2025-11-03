@@ -5,7 +5,7 @@ using ArchitectureLAB10.Domain.Ports.IServices;
 using AutoMapper;
 using MediatR;
 
-namespace ArchitectureLAB10.Application.Features.Users.Commands;
+namespace ArchitectureLAB10.Application.UseCases.Users.Commands;
 
 // 1. El Comando (Input)
 public class LoginUserCommand : IRequest<AuthResponseDto>

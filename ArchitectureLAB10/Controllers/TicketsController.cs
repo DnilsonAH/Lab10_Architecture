@@ -1,6 +1,6 @@
 using ArchitectureLAB10.Application.DTOs;
-using ArchitectureLAB10.Application.Features.Tickets.Commands;
-using ArchitectureLAB10.Application.Features.Tickets.Queries;
+using ArchitectureLAB10.Application.UseCases.Tickets.Commands;
+using ArchitectureLAB10.Application.UseCases.Tickets.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization; // Importante
 using Microsoft.AspNetCore.Mvc;
