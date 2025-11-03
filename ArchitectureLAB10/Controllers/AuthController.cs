@@ -8,7 +8,7 @@ namespace ArchitectureLAB10.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly IMediator _mediator; // Solo inyectamos MediatR
+    private readonly IMediator _mediator;
 
     public AuthController(IMediator mediator)
     {
@@ -25,10 +25,21 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message); // Manejo simple de errores
+            return BadRequest(ex.Message);
         }
     }
     
-    // Aquí crearías el endpoint [HttpPost("login")]
-    // que enviaría un `LoginUserCommand`
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginUserCommand command)
+    {
+        try
+        {
+            var authResponse = await _mediator.Send(command);
+            return Ok(authResponse);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

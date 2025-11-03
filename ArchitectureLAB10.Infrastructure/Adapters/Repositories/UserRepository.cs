@@ -10,7 +10,6 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     public UserRepository(TicketeraBdContext context) : base(context)
     {
     }
-    
     public async Task<User?> GetByUsernameAsync(string username)
     {
         return await _dbSet.FirstOrDefaultAsync(u => u.Username == username);

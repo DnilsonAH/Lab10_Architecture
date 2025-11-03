@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Persistence\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ArchitectureLAB10.Domain\ArchitectureLAB10.Domain.csproj" />
     </ItemGroup>
 

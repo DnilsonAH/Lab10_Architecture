@@ -4,13 +4,14 @@ using ArchitectureLAB10.Infrastructure.Configuration; // Importar
 using Microsoft.OpenApi.Models; // Para la configuración de Swagger con JWT
 
 var builder = WebApplication.CreateBuilder(args);
-
 // 1. Registrar servicios de Application (AutoMapper, MediatR)
 builder.Services.AddApplicationServices();
 
 // 2. Registrar servicios de Infrastructure (DbContext, UoW, JWT, Repos, Servicios)
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
+// Necesario para acceder al HttpContext en los servicios
+builder.Services.AddHttpContextAccessor();
 // 3. Configurar Swagger/OpenAPI para que soporte JWT
 builder.Services.AddSwaggerGen(options =>
 {
@@ -27,7 +28,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Autorización JWT (ej: Bearer eyJhbGciOi...)"
+        Description = "Autorización JWT: Bearer)"
     });
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement

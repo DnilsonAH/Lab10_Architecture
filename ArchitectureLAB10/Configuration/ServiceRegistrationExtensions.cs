@@ -1,5 +1,6 @@
 using System.Text;
 using ArchitectureLAB10.Domain.Ports;
+using ArchitectureLAB10.Domain.Ports.IRepositories;
 using ArchitectureLAB10.Domain.Ports.IServices;
 using ArchitectureLAB10.Infrastructure.Adapters;
 using ArchitectureLAB10.Infrastructure.Adapters.Repositories;
@@ -30,6 +31,12 @@ public static class InfrastructureServicesExtensions
 
         // 2. Registro de Unit of Work y Repositorios
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ITicketRepository, TicketRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+        services.AddScoped<IResponseRepository, ResponseRepository>();
+
         // Los repositorios específicos son creados por el UoW,
         // pero si necesitaras inyectar uno directamente, lo registras aquí:
         // services.AddScoped<IUserRepository, UserRepository>();

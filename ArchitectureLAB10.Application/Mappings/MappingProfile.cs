@@ -8,8 +8,12 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Mapeo de User a UserDto
+        // entity -> dto
         CreateMap<User, UserDto>();
+        CreateMap<Ticket, TicketDto>();
         
+        // dto -> entity
+        CreateMap<CreateTicketDto, Ticket>();
+        CreateMap<UpdateTicketDto, Ticket>();
     }
 }

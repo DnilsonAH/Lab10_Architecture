@@ -7,7 +7,6 @@ using MediatR;
 
 namespace ArchitectureLAB10.Application.Features.Users.Commands;
 
-// Define el "comando" (los datos de entrada) y el tipo de respuesta (AuthResponseDto)
 public class RegisterUserCommand : IRequest<AuthResponseDto>
 {
     public string Username { get; set; } = null!;
@@ -15,7 +14,6 @@ public class RegisterUserCommand : IRequest<AuthResponseDto>
     public string? Email { get; set; }
 }
 
-// Define el "manejador" (la lógica del caso de uso)
 public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AuthResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -37,17 +35,21 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, A
 
     public async Task<AuthResponseDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        // 1. Validar si el usuario ya existe
         var existingUser = await _unitOfWork.UserRepository.GetByUsernameAsync(request.Username);
         if (existingUser != null)
         {
-            throw new Exception("El nombre de usuario ya existe."); // Deberías usar excepciones customizadas
+            throw new Exception("El nombre de usuario ya existe.");
         }
-
-        // 2. Encriptar la contraseña
+        
+        var defaultRole = (await _unitOfWork.RoleRepository.FindAsync(r => r.RoleName == "User"))
+            .FirstOrDefault();
+        
+        if (defaultRole == null)
+        {
+            throw new Exception("Rol 'User' no encontrado. Por favor,d).");
+        }
         var hashedPassword = _passwordHasher.HashPassword(request.Password);
 
-        // 3. Crear la nueva entidad User
         var user = new User
         {
             UserId = Guid.NewGuid(),
@@ -56,15 +58,21 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, A
             Email = request.Email,
             CreatedAt = DateTime.UtcNow
         };
+        
+        var userRole = new UserRole
+        {
+            UserId = user.UserId,
+            RoleId = defaultRole.RoleId
+        };
 
-        // 4. Agregar al repositorio y guardar
         await _unitOfWork.UserRepository.AddAsync(user);
+        await _unitOfWork.UserRoleRepository.AddAsync(userRole);
+        
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        // 5. Generar el token JWT
-        var token = _jwtTokenGenerator.GenerateToken(user);
+        var roles = new List<string> { defaultRole.RoleName };
+        var token = _jwtTokenGenerator.GenerateToken(user, roles);
 
-        // 6. Mapear a DTOs y devolver la respuesta
         var userDto = _mapper.Map<UserDto>(user);
 
         return new AuthResponseDto

@@ -7,7 +7,7 @@ public class PasswordHasher : IPasswordHasher
 {
     public string HashPassword(string password)
     {
-        // El método HashPassword genera un salt automáticamente
+        // HashPassword de BCrypt genera un salt de forma auomática
         return BCrypt.Net.BCrypt.HashPassword(password);
     }
 
