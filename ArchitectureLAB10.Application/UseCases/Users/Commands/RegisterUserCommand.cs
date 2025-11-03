@@ -46,7 +46,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, A
         
         if (defaultRole == null)
         {
-            throw new Exception("Rol 'User' no encontrado. Por favor,d).");
+            throw new Exception("Rol 'User' no encontrado");
         }
         var hashedPassword = _passwordHasher.HashPassword(request.Password);
 

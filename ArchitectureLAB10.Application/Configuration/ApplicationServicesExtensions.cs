@@ -13,6 +13,7 @@ public static class ApplicationServicesExtensions
 
         // 2. Registrar MediatR
         // Escanea el ensamblado actual en busca de Handlers (RegisterUserCommandHandler)
+        
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         
         return services;
