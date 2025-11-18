@@ -3,7 +3,7 @@ name: Build and Deploy .NET Application
 on:
   push:
     branches:
-      - main # Asegúrate que esta sea tu rama principal
+      - master # Asegúrate que esta sea tu rama principal
 
 jobs:
   build:
