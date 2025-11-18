@@ -1,0 +1,36 @@
+name: Build and Deploy .NET Application
+
+on:
+  push:
+    branches:
+      - main # Asegúrate que esta sea tu rama principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4 
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        # Tu proyecto está en net9.0, usa la version más reciente.
+        dotnet-version: '9.0.x' 
+
+    - name: Restore dependencies
+      run: dotnet restore ./ArchitectureLAB10.sln # Restaura la solución completa
+
+    - name: Build application
+      run: dotnet build ./ArchitectureLAB10/ArchitectureLAB10.csproj --configuration Release --no-restore
+
+    - name: Publish application
+      # Aquí publicamos el proyecto principal de la API
+      run: dotnet publish ./ArchitectureLAB10/ArchitectureLAB10.csproj --configuration Release --output ./published --no-build
+
+    - name: Upload artifacts (Opcional, pero recomendado para el deploy)
+      uses: actions/upload-artifact@v4
+      with:
+        name: api-build-artifact
+        path: ./published
